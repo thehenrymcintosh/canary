@@ -32,26 +32,46 @@ router.post('/register', function(req,res){
 
     var errors = req.validationErrors();
 
+
+
     if (errors){
         res.render('register', {
             errors: errors
         });
     } else {
-        console.log("Success")
-        var newUser = new User({
-            name: name,
-            email: email,
-            username: username,
-            password: password1
+        User.getUserByUsername(username, function(err, user1){
+            User.getUserByEmail(email, function(err, user2){
+                if(user1 != null){
+                    console.log("Username is taken");
+                    req.flash("error_msg", "Username is taken");
+                    res.render('register',{
+                        errors: [{"msg": "Username is taken"}]
+                    });
+                }else if(user2 != null){
+                    console.log("Email is already in use");
+                    req.flash("error_msg", "Email is already in use, try signing in, or registering with a different email address.");
+                    res.render('register',{
+                        errors: [{"msg": "Email is already in use, try signing in, or registering with a different email address."}]
+                    });
+                }else{
+                    console.log("Success");
+                    var newUser = new User({
+                        name: name,
+                        email: email,
+                        username: username,
+                        password: password1
+                    });
+                    User.createUser(newUser, function(err, newUser){
+                        if(err){
+                            throw err;
+                        }
+                        console.log(newUser)
+                    });
+                    req.flash("success_msg", "you are registered and can now log in");
+                    res.redirect('/users/login');
+                }
+            });
         });
-        User.createUser(newUser, function(err, newUser){
-            if(err){
-                throw err;
-            }
-            console.log(newUser)
-        });
-        req.flash("success_msg", "you are registered and can now log in");
-        res.redirect('/users/login');
     }
 });
 
