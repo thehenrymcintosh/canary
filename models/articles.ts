@@ -23,3 +23,5 @@ var articleSchema = mongoose.Schema({
 		secondaryCategories: String
     }
 });
+
+var article = module.exports = mongoose.model('article', articleSchema);
