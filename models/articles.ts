@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/canary");
+var db = mongoose.connection;
 
 var articleSchema = mongoose.Schema({
     title:{
@@ -25,3 +27,15 @@ var articleSchema = mongoose.Schema({
 });
 
 var article = module.exports = mongoose.model('article', articleSchema);
+
+module.exports.getArticles = function(callback: Function, limit: number){
+    article.find(callback).limit(limit);
+}
+
+module.exports.addArticle = function(newArticle, callback: Function){
+    newArticle.save(callback);
+};
+
+module.exports.getArticleByID = function(id: string, callback: Function){
+    article.findById(id, callback);
+}

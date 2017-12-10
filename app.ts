@@ -11,10 +11,10 @@ var LocalStrategy = require("passport-local").Strategy;
 var mongo = require("mongodb");
 var mongoose = require("mongoose");
 // uncomment next line for running locally
-// var dbURI = 'mongodb://localhost/canary';
+var dbURI = 'mongodb://localhost/canary';
 
 // uncomment next line for deploying
-var dbURI = "mongodb://systemtest:testing@ds129926.mlab.com:29926/canarybuild"
+// var dbURI = "mongodb://systemtest:testing@ds129926.mlab.com:29926/canarybuild"
 mongoose.connect(dbURI);
 
 // mongoose.connect(process.env.MONGODB_URI);
@@ -23,6 +23,7 @@ var db = mongoose.connection;
 
 var routes = require("./routes/index");
 var users = require("./routes/users");
+var articles = require("./routes/articles");
 
 // init app
 var app = express();
@@ -79,6 +80,7 @@ app.use(function(req, res, next){
 });
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', articles);
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
