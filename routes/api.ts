@@ -28,7 +28,6 @@ router.get('/articles/:_id', function(req, res){
  });
 
 
-
 router.post('/articles/add', function(req,res){
     var title = req.body.title;
     var content = req.body.content;

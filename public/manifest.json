@@ -14,17 +14,17 @@
       },
       {
         "src": "public/graphics/icons/canary_icon-384.png",
-        "type": "image/[ng",
+        "type": "image/png",
         "sizes": "384x384"
       },
       {
         "src": "public/graphics/icons/canary_icon-256.png",
-        "type": "image/[ng",
+        "type": "image/png",
         "sizes": "256x256"
       },
       {
         "src": "public/graphics/icons/canary_icon-192.png",
-        "type": "image/[ng",
+        "type": "image/png",
         "sizes": "192x192"
       }
     ],

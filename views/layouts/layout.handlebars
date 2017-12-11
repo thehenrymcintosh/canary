@@ -40,17 +40,17 @@
     {{{body}}}
 </body>
 
-{{!-- come back to service workers
+{{!-- come back to service workers --}}
 <script>
-    if ('serviceWorker' in navigator) {
-        console.log('CLIENT: service worker registration in progress.');
-        navigator.serviceWorker.register('/js/serviceworker.js').then(function() {
-        console.log('CLIENT: service worker registration complete.');
-    }, function() {
-        console.log('CLIENT: service worker registration failure.');
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+    .then(function(registration) {
+    // Successful registration
+    console.log('Registration successful, scope is:', registration.scope);
+    }).catch(function(err) {
+    // Failed registration, service worker won’t be installed
+    console.log('Whoops. Service worker registration failed, error:', err);
     });
-    } else {
-        console.log('CLIENT: service worker is not supported.');
-    }
-</script> --}}
+}
+</script>
 </html>

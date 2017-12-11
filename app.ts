@@ -10,16 +10,19 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var mongo = require("mongodb");
 var mongoose = require("mongoose");
-// uncomment next line for running locally
+// uncomment next 2 lines for running locally
 var dbURI = 'mongodb://localhost/canary';
+mongoose.connect(dbURI);
 
 // uncomment next line for deploying
 // var dbURI = "mongodb://systemtest:testing@ds129926.mlab.com:29926/canarybuild"
-mongoose.connect(dbURI);
 
+
+// or uncomment next line for deploying
 // mongoose.connect(process.env.MONGODB_URI);
 
 var db = mongoose.connection;
+
 
 var routes = require("./routes/index");
 var users = require("./routes/users");
