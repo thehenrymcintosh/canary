@@ -23,7 +23,6 @@ mongoose.connect(dbURI);
 
 var db = mongoose.connection;
 
-
 var routes = require("./routes/index");
 var users = require("./routes/users");
 var api = require("./routes/api");
