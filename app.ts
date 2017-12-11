@@ -23,7 +23,8 @@ var db = mongoose.connection;
 
 var routes = require("./routes/index");
 var users = require("./routes/users");
-var articles = require("./routes/articles");
+var api = require("./routes/api");
+var dashboard = require("./routes/dashboard");
 
 // init app
 var app = express();
@@ -80,7 +81,9 @@ app.use(function(req, res, next){
 });
 app.use('/', routes);
 app.use('/users', users);
-app.use('/api', articles);
+app.use('/api', api);
+app.use('/dashboard', dashboard);
+
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);

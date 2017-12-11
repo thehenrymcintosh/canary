@@ -28,8 +28,11 @@ var articleSchema = mongoose.Schema({
 
 var article = module.exports = mongoose.model('article', articleSchema);
 
-module.exports.getArticles = function(callback: Function, limit: number){
-    article.find(callback).limit(limit);
+module.exports.getArticles = function(query, callback: Function, limit: number){
+    article.find(query, callback).limit(limit);
+}
+module.exports.getAllArticles = function( callback: Function, limit: number){
+    article.find( callback).limit(limit);
 }
 
 module.exports.addArticle = function(newArticle, callback: Function){
