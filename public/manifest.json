@@ -23,7 +23,7 @@
         "sizes": "256x256"
       },
       {
-        "src": "graphics/icons/canary_icon-192.png",
+        "src": "/graphics/icons/canary_icon-192.png",
         "type": "image/png",
         "sizes": "192x192"
       }
